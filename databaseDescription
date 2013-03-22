@@ -1,0 +1,44 @@
+Basic data entries
+	Email
+		id - int
+		fromAddress - utf8 varchar, 256 chars
+		toAddress - utf8 varchar, 256 chars
+		fromFriend - bool - did the recipient know the supposed sender
+		content - 1024 bytes of email text/html - varchar?
+	URL
+		id - int
+		domain - the domain this url belongs to - foreign key, a many-one rel
+		URL - utf8 varchar, 2083 chars
+		processed - bool - has this URL been processed?
+	Domain
+		id - int
+		URL - utf8 string - 256 chars
+	HTML Content
+		id
+		content - varbinary 1024 bytes of html content
+		--- maybe some other analysis stuff here later
+	JS Content
+		id
+		content - 1024 bytes of js content
+		--- maybe some other analysis stuff here later
+	Other content
+		id
+		type - utf8 string, 256 chars - some kind of description
+		content - 1024 bytes of content
+
+Many-to-many relationships - primary keys are composites of the two...
+	Email-to-URL
+		email id - the email that contained the url - foreign key
+		url id - the url that was contained in the email - foreign key
+	URL-to-URL
+		source url id - the url that contained the other - foreign key
+		url id - the url that was contained in the source - foreign key
+	HTML-to-URL - html documents may be found at multiple urls...
+		html content id - the html content
+		url id - the containing url
+	JS-to-URL
+		JS content id - the js content
+		url id - the containing url
+	Other-toURL
+		other content id - the other content
+		url id - the containing url

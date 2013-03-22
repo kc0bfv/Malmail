@@ -91,6 +91,14 @@ class EmailData(RetrievedData):
 			super().__init__(msg.get_payload(decode=True),
 					msg.get_content_type())
 
+	def fromAddress(self):
+		return self.msg["From"]
+
+	def toAddress(self):
+		return self.msg["To"]
+
+	def fromFriend(self):
+		return False
 
 
 class Content(EqualityWithToTuple):

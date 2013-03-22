@@ -47,13 +47,13 @@ class EmailHandler():
 
 	def handleURLs(self, urlList, storeInDB=True):
 		"""Handle all URLs in the URL list.
-			
-			Get the contents of each url in the list, "handle" the contents.
 
+			Get the contents of each url in the list, "handle" the contents.
+			
 			urlList: [url string, ...]
 			storeInDB: whether to store found urls in the database or not.
 				Not storing them provides a way to limit depth of followed links
-			"""
+		"""
 		for url in urlList:
 			contentList = rurl.retrieveURLWithEachUserAgent(url)
 
@@ -61,7 +61,7 @@ class EmailHandler():
 			# - cross reference it with the user agents...
 			if storeInDB:
 				self.db.addURLs(it.chain.from_iterable(
-						content.contents.extractURLs() for content in contentList))
+					content.contents.extractURLs() for content in contentList))
 
 		self.db.markURLsExplored(urlList)
 
