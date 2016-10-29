@@ -27,18 +27,22 @@ Basic data entries
 		content - 1024 bytes of content
 
 Many-to-many relationships - primary keys are composites of the two...
-	Email-to-URL
+	URL-to-Email
 		email id - the email that contained the url - foreign key
 		url id - the url that was contained in the email - foreign key
 	URL-to-URL
 		source url id - the url that contained the other - foreign key
 		url id - the url that was contained in the source - foreign key
+		user agent - a user agent that yielded this relationship
 	HTML-to-URL - html documents may be found at multiple urls...
 		html content id - the html content
 		url id - the containing url
+		user agent - a user agent that yielded this relationship
 	JS-to-URL
 		JS content id - the js content
 		url id - the containing url
+		user agent - a user agent that yielded this relationship
 	Other-toURL
 		other content id - the other content
 		url id - the containing url
+		user agent - a user agent that yielded this relationship
